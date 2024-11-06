@@ -1,0 +1,15 @@
+.Fruits{
+    &Wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100svw;
+        height: 100svh;
+        flex-direction: column;
+        gap: 50px;
+    }
+    &Title {
+        font-size: 60px;
+        color: #888;
+    }   
+}

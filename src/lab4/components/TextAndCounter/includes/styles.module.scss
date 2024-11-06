@@ -1,0 +1,77 @@
+.Counter{
+    &Box{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 70px 0;
+    }
+    &Title{
+        display: flex;
+        width: 100%;
+        font-size: 40px;
+        justify-content: center;
+        margin: 0;
+    }
+    &Button{
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+        height: 40px;
+        width: 140px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        &--add{
+            background-color: #1a9c00;
+        }
+        &--remove{
+            background-color: #ff3c01;
+        }
+        &--reset{
+            background-color: #f8cc06;
+        }
+    }
+}
+
+.Text{
+    &Box{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 20px 0;
+    }
+    &Input{
+        border: 2px solid #2af302;
+        font-size: 16px;
+        padding-left: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        &:focus{
+            outline: none;
+        }
+    }
+    &Button{
+       height: 40px;
+       width: 100px;
+       font-size: 18px;
+       font-weight: 500;
+       color: #fff;
+       border: 2px solid #2af302;
+       border-top-right-radius: 10px;
+       border-bottom-right-radius: 10px;
+       background-color: #2af302; 
+       cursor: pointer;
+    }
+    &Result{
+        width: 100%;
+        text-align: center;
+        font-weight: 500;
+        font-size: 20px;
+        span {
+            font-weight: 600;
+            color: #0ce6d3;
+            font-size: 24px;
+        }
+    }
+}
