@@ -1,40 +1,57 @@
-import { Text, ScrollView, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 export default function WelcomeScreen() {
-    return (
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        showsVerticalScrollIndicator={true}
-        indicatorStyle="white"
-      >
-        <Text style={styles.headerText}>
-          Ласкаво просимо до Little Lemon
-        </Text>
-        <Text style={styles.bodyText}>
-          Little Lemon — це чарівне бістро, де подають прості страви та класичні коктейлі в жвавій, але невимушеній обстановці. Ми хотіли б почути більше про ваш досвід роботи з нами!
-        </Text>
-      </ScrollView>
-    );
-  }
-  
-  const styles = StyleSheet.create({
-    scrollContainer: {
-      flex: 1,
-      alignItems: 'center',
-      padding: 20,
-    },
-    headerText: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      color: '#fff',
-      textAlign: 'center',
-      paddingTop: 20,
-      paddingBottom: 20,
-    },
-    bodyText: {
-      fontSize: 18,
-      color: '#fff',
-      textAlign: 'center',
-      marginTop: 20,
-    },
-  });
+  const [firstName, setFirstName] = useState('');
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.headerText}>Welcome to Little Lemon</Text>
+      <Text style={styles.descriptionText}>
+        Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear your experience with us!
+      </Text>
+      <TextInput
+        style={styles.input}
+        placeholder="First Name"
+        placeholderTextColor="#EDEFEE"
+        value={firstName}
+        onChangeText={setFirstName}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#333333',
+    padding: 20,
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#EDEFEE',
+    marginBottom: 20,
+  },
+  descriptionText: {
+    fontSize: 16,
+    color: '#EDEFEE',
+    textAlign: 'center',
+    marginBottom: 20,
+    paddingHorizontal: 10,
+  },
+  input: {
+    height: 40,
+    borderColor: '#EDEFEE',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+    color: '#333333',
+    backgroundColor: '#EDEFEE',
+    width: '80%',
+    marginBottom: 20,
+    fontSize: 16,
+  },
+});
