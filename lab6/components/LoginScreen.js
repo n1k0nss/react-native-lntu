@@ -10,7 +10,7 @@ export default function LoginScreen({ navigation }) {
   const isDarkMode = colorScheme === 'dark';
 
   const handleLogin = () => {
-    navigation.navigate('welcome');
+    navigation.navigate('Welcome');
   };
   
 
