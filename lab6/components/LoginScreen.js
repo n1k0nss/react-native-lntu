@@ -1,33 +1,21 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, TextInput, StyleSheet, Pressable, View, Image, useColorScheme } from 'react-native';
-import LogoImage from '../assets/logo.png';
 
-export default function LoginScreen() {
+
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
-  
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
+    navigation.navigate('welcome');
   };
+  
 
   return (
     <ScrollView style={[styles.container, isDarkMode ? styles.darkContainer : styles.lightContainer]}>
-      {isLoggedIn ? (
-        <View>
-          <View style={styles.header}>
-            <Image source={LogoImage} style={styles.logo} />
-            <Text style={[styles.welcomeText, isDarkMode ? styles.darkText : styles.lightText]}>
-              Welcome to Little Lemon
-            </Text>
-          </View>
-          <Text style={[styles.loggedText, isDarkMode ? styles.darkText : styles.lightText]}>You are logged in!</Text>
-        </View>
-      ) : (
         <View>
           <Text style={[styles.headerText, isDarkMode ? styles.darkText : styles.lightText]}>
             Welcome to Little Lemon
@@ -55,10 +43,10 @@ export default function LoginScreen() {
           />
 
           <Pressable style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
+              <Text style={styles.buttonText}>Login</Text>
           </Pressable>
         </View>
-      )}
+
     </ScrollView>
   );
 }
@@ -73,17 +61,6 @@ const styles = StyleSheet.create({
   },
   lightContainer: {
     backgroundColor: '#EDEFEE',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 20,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
   },
   headerText: {
     paddingTop: 40,
@@ -125,17 +102,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     fontWeight: 'bold',
-  },
-  welcomeText: {
-    fontSize: 24,
-    padding: 20,
-    textAlign: 'center',
-  },
-  loggedText: {
-    fontSize: 20,
-    padding: 20,
-    marginTop: 80,
-    textAlign: 'center',
   },
   lightText: {
     color: '#333333',

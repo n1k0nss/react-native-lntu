@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, useColorScheme } from 'react-native';
+import LogoImage from '../assets/logo.png';
 
 export default function WelcomeScreen() {
-  const [firstName, setFirstName] = useState('');
+  const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.headerText}>Welcome to Little Lemon</Text>
-      <Text style={styles.descriptionText}>
+    <View style={[styles.container, isDarkMode ? styles.darkContainer : styles.lightContainer]}>
+      <View style={styles.header}>
+        <Image source={LogoImage} style={styles.logo} />
+        <Text style={[styles.welcomeText, isDarkMode ? styles.darkText : styles.lightText]}>
+          Welcome to Little Lemon
+        </Text>
+      </View>
+      <Text style={[styles.descriptionText, isDarkMode ? styles.darkText : styles.lightText]}>
         Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear your experience with us!
       </Text>
-      <TextInput
-        style={styles.input}
-        placeholder="First Name"
-        placeholderTextColor="#EDEFEE"
-        value={firstName}
-        onChangeText={setFirstName}
-      />
     </View>
   );
 }
@@ -24,28 +22,40 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
-  headerText: {
+  header: {
+    flexDirection: 'row',
+    gap: 20,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+  },
+  welcomeText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
   },
   descriptionText: {
     fontSize: 16,
     textAlign: 'center',
-    marginBottom: 20,
     paddingHorizontal: 10,
-  },
-  input: {
-    height: 40,
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    width: '80%',
     marginBottom: 20,
-    fontSize: 16,
+  },
+  darkContainer: {
+    backgroundColor: '#333333',
+  },
+  lightContainer: {
+    backgroundColor: '#FFFFFF',
+  },
+  darkText: {
+    color: '#EDEFEE',
+  },
+  lightText: {
+    color: '#333333',
   },
 });
