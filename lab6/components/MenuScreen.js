@@ -1,26 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
+import menuJson from '../menuItems.json'; // Імпорт JSON-файлу
 
 export default function MenuScreen() {
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMenuItems = async () => {
-      try {
-        const response = await fetch(
-          'https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json'
-        );
-        const json = await response.json();
-        setMenuItems(json.menu);
-      } catch (error) {
-        console.error('Error fetching menu items:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
 
-    fetchMenuItems();
+
+  console.log(menuItems);
+  
+  
+//   useEffect(() => {
+//     const fetchMenuItems = async () => {
+//       try {
+//         const response = await fetch(
+//           'https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json'
+//         );
+//         const json = await response.json();
+//         setMenuItems(json.menu);
+//       } catch (error) {
+//         console.error('Error fetching menu items:', error);
+//       } finally {
+//         setIsLoading(false);
+//       }
+//     };
+
+//     fetchMenuItems();
+//   }, []);
+
+useEffect(() => {
+    setMenuItems(menuJson.menu);
+    setIsLoading(false);
   }, []);
 
   const renderMenuItem = ({ item }) => (
