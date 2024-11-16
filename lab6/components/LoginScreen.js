@@ -1,21 +1,41 @@
 import React, { useState } from 'react';
-import { ScrollView, Text, TextInput, StyleSheet, Pressable, View, Image, useColorScheme } from 'react-native';
-
+import { ScrollView, Text, TextInput, StyleSheet, Pressable, View, useColorScheme, Alert } from 'react-native';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
 
   const handleLogin = () => {
+    if (!email || !password) {
+      Alert.alert('Validation Error', 'Please fill in both email and password.');
+      return;
+    }
+
+    setIsLoggedIn(true);
     navigation.navigate('Welcome');
   };
-  
 
   return (
-    <ScrollView style={[styles.container, isDarkMode ? styles.darkContainer : styles.lightContainer]}>
+    <ScrollView
+      style={[
+        styles.container,
+        isDarkMode ? styles.darkContainer : styles.lightContainer,
+      ]}
+    >
+      {isLoggedIn ? (
+        <View>
+          <Text style={[styles.headerText, isDarkMode ? styles.darkText : styles.lightText]}>
+            Welcome Back!
+          </Text>
+          <Text style={[styles.regularText, isDarkMode ? styles.darkText : styles.lightText]}>
+            You are successfully logged in.
+          </Text>
+        </View>
+      ) : (
         <View>
           <Text style={[styles.headerText, isDarkMode ? styles.darkText : styles.lightText]}>
             Welcome to Little Lemon
@@ -43,10 +63,10 @@ export default function LoginScreen({ navigation }) {
           />
 
           <Pressable style={styles.button} onPress={handleLogin}>
-              <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Login</Text>
           </Pressable>
         </View>
-
+      )}
     </ScrollView>
   );
 }
